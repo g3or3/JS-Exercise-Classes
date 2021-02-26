@@ -146,6 +146,11 @@ class Instructor extends Lambdasian {
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`
   }
+  assignPoints(student) {
+    let flag = Math.floor(Math.random() * 10)
+    let scoreAdj = Math.floor(Math.random() * 101);
+    flag <= 4 ? student.grade += scoreAdj : student.grade -= scoreAdj;
+  }
 }
   /*
     TASK 5
@@ -168,6 +173,7 @@ class Student extends Lambdasian {
     this.previousBackground = attributes.previousBackground
     this.className = attributes.className
     this.favSubjects = attributes.favSubjects
+    this.grade = 70
   }     
   listSubjects() {
     return `Loving ${this.favSubjects.toString()}!`;
@@ -177,6 +183,9 @@ class Student extends Lambdasian {
   }
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduate() {
+    this.grade > 70 ? console.log("You graduated") : console.log("Keep studying scrub")
   }
 }
   
@@ -214,8 +223,12 @@ class ProjectManager extends Instructor {
         + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
         + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
   */
-
-
+const george = new Student({name: "george", age: 24, location: "Orlando", previousBackground: "Finance", className: "web41", favSubjects: ["CS"]})
+const louis = new Instructor({name: "louis", age: 25, location: "orlando", specialty: "CS", favLanguage: "Python", catchPhrase: "Fuck you"})
+const amanda = new ProjectManager({name: "amanda", age: 19, location: "Orlando", gradClassName: "web39", favInstructor: "louis"})
+amanda.assignPoints(george)
+// louis.assignPoints(george)
+george.graduate()
   //End of Challenge
   /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
   function foo(){
